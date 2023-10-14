@@ -1,0 +1,35 @@
+all:
+  hosts:
+    kube-dev-node-1:
+      ansible_host: 192.168.59.139
+      ip: 192.168.59.139
+      access_ip: 192.168.59.139
+    kube-dev-node-2:
+      ansible_host: 192.168.59.140
+      ip: 192.168.59.140
+      access_ip: 192.168.59.140
+    kube-dev-node-3:
+      ansible_host: 192.168.59.141
+      ip: 192.168.59.141
+      access_ip: 192.168.59.141
+  children:
+    kube_control_plane:
+      hosts:
+        kube-dev-node-1:
+        kube-dev-node-2:
+    kube_node:
+      hosts:
+        kube-dev-node-1:
+        kube-dev-node-2:
+        kube-dev-node-3:
+    etcd:
+      hosts:
+        kube-dev-node-1:
+        kube-dev-node-2:
+        kube-dev-node-3:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+    calico_rr:
+      hosts: {}
