@@ -4,7 +4,7 @@ metadata:
   name: myapp-argo-application
   namespace: argocd
 spec:
-  project: default
+  project: mongo_DB_Express
 
   source:
     repoURL: https://github.com/djangoreactdev/kubernetes-ansible.git
@@ -12,7 +12,7 @@ spec:
     path: mongo_DB_Express
   destination:
     server: https://kubernetes.default.svc
-    namespace: myapp
+    namespace: mongo_DB_Express
 
   syncPolicy:
     syncOptions:
